@@ -1,6 +1,7 @@
 package problems;
 
 public class Problem_405 {
+    // convert a decimal to hex String
     public String toHex(int num) {
         int dev = num;
         StringBuilder builder = new StringBuilder();
