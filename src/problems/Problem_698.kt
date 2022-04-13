@@ -62,7 +62,14 @@ fun backTrack(
     println("startIndex: $startIndex, currentSum: $sumOfSubset, rem: $remainingNumberOfSubsets")
     return when {
         remainingNumberOfSubsets == 0 -> true
-        sumOfSubset == limitSumPerSet -> backTrack(nums, limitSumPerSet, usedIndices, 0, remainingNumberOfSubsets - 1, 0)
+        sumOfSubset == limitSumPerSet -> backTrack(
+            nums = nums,
+            limitSumPerSet = limitSumPerSet,
+            usedIndices = usedIndices,
+            startIndex = 0,
+            remainingNumberOfSubsets = remainingNumberOfSubsets - 1,
+            sumOfSubset = 0
+        )
         else -> {
             for (index in startIndex until nums.size) {
                 val num  = nums[index]
@@ -74,7 +81,14 @@ fun backTrack(
                     continue
                 }
                 usedIndices[index] = true
-                val backTracked = backTrack(nums, limitSumPerSet, usedIndices, index + 1, remainingNumberOfSubsets, sumOfSubset + num)
+                val backTracked = backTrack(
+                    nums = nums,
+                    limitSumPerSet = limitSumPerSet,
+                    usedIndices = usedIndices,
+                    startIndex = index + 1,
+                    remainingNumberOfSubsets = remainingNumberOfSubsets,
+                    sumOfSubset = sumOfSubset + num
+                )
                 if (backTracked)
                     return true
                 else usedIndices[index] = false
